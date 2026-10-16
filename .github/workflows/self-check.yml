@@ -1,0 +1,24 @@
+# The tool checking our own site, on GitHub's runners rather than ours.
+#
+# Two purposes: it proves the script works on a plain PHP install with no extensions beyond the usual ones,
+# and it is the honest demonstration — if our own pages ever acquire a finding, this build goes red in public.
+name: self-check
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  check-our-own-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: show that PHP is all it needs
+        run: php -v
+      - name: check our own site
+        run: php markproof scan https://accessaudit.dev/ --format text
+      - name: check it refuses to invent findings on a known-clean page
+        run: php markproof scan https://example.com/ --fail-on warning
