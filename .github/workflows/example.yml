@@ -1,0 +1,20 @@
+# What using this looks like in a real project: check the sitemap, and fail the build only on findings
+# that are new since the baseline was recorded. Run it once with --update-baseline to adopt it.
+name: accessibility
+
+on:
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1'
+
+jobs:
+  markproof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: PLACEHOLDER_OWNER/markproof-cli@v1
+        with:
+          sitemap: https://example.com/sitemap.xml
+          max-pages: '50'
+          baseline: .markproof.json
+          fail-on: error

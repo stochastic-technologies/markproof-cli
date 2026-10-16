@@ -1,0 +1,48 @@
+name: 'Markproof accessibility check'
+description: 'Check pages for accessibility problems that can be proven from the HTML, and annotate the pull request with the exact markup responsible.'
+author: 'Markproof'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  url:
+    description: 'A page to check.'
+    required: false
+  sitemap:
+    description: 'A sitemap to discover pages from (mutually exclusive with url).'
+    required: false
+  max-pages:
+    description: 'Stop after this many pages.'
+    required: false
+    default: '25'
+  baseline:
+    description: 'Path to a baseline file; only findings that are not in it fail the build.'
+    required: false
+    default: '.markproof.json'
+  fail-on:
+    description: 'What counts as a failure: none, warning or error.'
+    required: false
+    default: 'error'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check accessibility
+      shell: bash
+      run: |
+        set -e
+        args=()
+        if [ -n "${{ inputs.url }}" ]; then
+          args+=("${{ inputs.url }}")
+        elif [ -n "${{ inputs.sitemap }}" ]; then
+          args+=(--sitemap "${{ inputs.sitemap }}")
+        else
+          echo "::error::Give the action a url or a sitemap."
+          exit 2
+        fi
+        args+=(--max-pages "${{ inputs.max-pages }}" --format github --fail-on "${{ inputs.fail-on }}")
+        if [ -n "${{ inputs.baseline }}" ] && [ -f "${{ inputs.baseline }}" ]; then
+          args+=(--baseline "${{ inputs.baseline }}")
+        fi
+        php "${{ github.action_path }}/markproof" scan "${args[@]}"

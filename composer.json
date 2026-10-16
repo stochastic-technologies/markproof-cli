@@ -1,0 +1,14 @@
+{
+	"name": "markproof/cli",
+	"description": "Accessibility checks from the command line: finds the problems that can be proven from a page's HTML and quotes the exact markup responsible.",
+	"type": "library",
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://accessaudit.dev",
+	"bin": ["markproof"],
+	"require": {
+		"php": ">=7.4",
+		"ext-curl": "*",
+		"ext-dom": "*",
+		"ext-libxml": "*"
+	}
+}
