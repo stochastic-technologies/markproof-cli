@@ -9,6 +9,14 @@ It is honest about its limits, because a tool that hides them is worse than usel
 contrast, judge whether alt text is useful, or describe how a page behaves in a screen reader. It is not a
 statement of compliance with anything, and it will never print a score out of a hundred.
 
+## Get it
+
+    git clone https://github.com/stochastic-technologies/markproof-cli
+    cd markproof-cli && chmod +x markproof
+
+Or download the zip from our site: <https://accessaudit.dev/download/markproof-cli.zip> (16 KB, no
+dependencies, nothing to install beyond PHP).
+
 ## Use it
 
     ./markproof scan https://example.com/
