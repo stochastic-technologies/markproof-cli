@@ -22,3 +22,10 @@ jobs:
         run: php markproof scan https://accessaudit.dev/ --format text
       - name: check it refuses to invent findings on a known-clean page
         run: php markproof scan https://example.com/ --fail-on warning
+      # and the action itself, used the way a customer would use it, so that a broken action.yml is
+      # caught here rather than by whoever tries to publish it to the Marketplace
+      - name: use the action as an action
+        uses: ./
+        with:
+          url: https://accessaudit.dev/
+          fail-on: error
