@@ -1,5 +1,5 @@
 name: 'Markproof accessibility check'
-description: 'Check pages for accessibility problems that can be proven from the HTML, and annotate the pull request with the exact markup responsible.'
+description: 'Find accessibility problems provable from a page’s HTML, and annotate pull requests with the exact markup responsible.'
 author: 'Markproof'
 branding:
   icon: 'check-circle'
