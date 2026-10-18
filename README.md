@@ -17,6 +17,15 @@ statement of compliance with anything, and it will never print a score out of a 
 Or download the zip from our site: <https://accessaudit.dev/download/markproof-cli.zip> (16 KB, no
 dependencies, nothing to install beyond PHP).
 
+With Composer, straight from this repository — no Packagist listing needed:
+
+    composer config repositories.markproof vcs https://github.com/stochastic-technologies/markproof-cli
+    composer require markproof/cli
+
+(We have not listed it on Packagist yet, because their sign-in asks for control of repository webhooks on the
+whole GitHub account, and we would rather document two lines than ask anybody for that. When it is listed,
+`composer global require markproof/cli` will work without the first line.)
+
 ## Use it
 
     ./markproof scan https://example.com/
