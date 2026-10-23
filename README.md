@@ -21,11 +21,14 @@ With Composer:
 
     composer global require markproof/cli
 
-The package is listed on Packagist as <https://packagist.org/packages/markproof/cli>, so that is all you need. If
-you would rather not use the registry, the same thing works from the repository directly:
+The package is on Packagist as <https://packagist.org/packages/markproof/cli>. If you would rather not depend on a
+registry — or you want the newest tag before the registry has caught up with it, which is normal here — install
+straight from the repository:
 
     composer config repositories.markproof vcs https://github.com/stochastic-technologies/markproof-cli
     composer require markproof/cli
+
+Both paths run the same code; the repository one follows our tags directly, so it is never behind.
 
 ## Use it
 
