@@ -22,7 +22,7 @@
 
 declare( strict_types = 1 );
 
-define( 'CLI_VERSION', '0.1.0' );
+define( 'CLI_VERSION', '1.1.0' );
 
 /* The rules are the same file the WordPress plugin ships. This shim provides the handful of
  * WordPress functions it calls, so there is exactly one copy of the checks anywhere. */
@@ -43,7 +43,7 @@ if ( ! function_exists( 'apply_filters' ) ) {
 }
 require_once __DIR__ . '/rules.php';
 
-const UA = 'Markproof-CLI/' . CLI_VERSION . ' (+https://markproof.dev; accessibility checks)';
+const UA = 'Markproof-CLI/' . CLI_VERSION . ' (+https://accessaudit.dev/cli.html; accessibility checks)';
 
 /* ------------------------------------------------------------------ helpers */
 
